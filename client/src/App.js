@@ -1,34 +1,99 @@
-import React, { useState, useEffect } from 'react';
-import fetch from 'node-fetch';
+import React, { useState } from 'react';
+
+import Layout from './components/Layout'
+import WeatherTable from './components/WeatherTable'
+
 import './App.css';
 
 function App() {
-  const [weatherData, setWeatherData] = useState(null);
+  // define states of APP
+  const [inputCityValue, setInputCityValue] = useState('');
+  const [citiesWeatherData, setCitiesWeatherData] = useState({});
+  const [error, setError] = useState('');
 
-  useEffect(() => {
+  function handleOnSubmit(event) {
+    event.preventDefault();
+
     const fetchData = async () => {
-      try {
-        // let response = await fetch('https://hn.algolia.com/api/v1/search?query=redux');
-        let response = await fetch('/weather?name=abcd'); // 1
-        console.log(response)
-        let data = await response.json(); // 2
-        setWeatherData(data); 
-      } catch (error) {
-        throw Error(`error:${error}`);
+      let response = await fetch(`/weather/${inputCityValue}`);
+      // Handle response error here
+      if(response.status !== 200) {
+        let error = await response.json();
+        setError(error);
+      } else { // fetch data from here
+        let data = await response.json();
+        setError('');
+        data['city'] = inputCityValue;
+        setCitiesWeatherData({ ...citiesWeatherData, [inputCityValue]: data });
       }
     };
-    fetchData();
-  }, []);
 
-  console.log('weatherData');
-  console.log(weatherData);
+    // fetch data if inputCityValue is not empty
+    if(!(inputCityValue === '')) { 
+      fetchData();
+    } else {
+      setError('Input data is empty');
+    }
+  }
+
+  // update inputCityValue on input onBlur  
+  const handleOnBlur = (event) => {
+    setInputCityValue(event.target.value.trim().toLowerCase());
+  }
+
+  // render multiuple WeatherTableRows from citiesWeatherData
+  let WeatherTableRowElements = Object.keys(citiesWeatherData).map((cityWeatherData, i) => {
+    return (
+      <WeatherTable.Row
+        key={i}
+        city={citiesWeatherData[cityWeatherData].city}
+        weatherIcon={citiesWeatherData[cityWeatherData].currently.icon}
+        time={citiesWeatherData[cityWeatherData].currently.time}
+        summary={citiesWeatherData[cityWeatherData].currently.summary}
+        temperature={citiesWeatherData[cityWeatherData].currently.temperature}
+      />
+    )
+  });
 
   return (
     <div className="App">
-      <h1>Users</h1>
-      <p>{JSON.stringify(weatherData)}</p>
+      <Layout
+        title="[ iWeather ]" 
+        subTitle="An application to find weather report of city"
+      >
+        <form 
+          className="form" 
+          onSubmit={handleOnSubmit}
+        >
+          <label className="label">
+            Type City Name Here:
+          </label>
+          <input 
+            id="cityName" 
+            name="cityName" 
+            className="input-text" 
+            type="text" 
+            onBlur={handleOnBlur}
+            placeholder="Browse for your location"
+          />          
+          {error &&
+            <p className="input-error">{error}</p>
+          }
+          <input
+            className="input-button" 
+            type="submit" 
+            value="Search" 
+          />
+        </form>
+
+        {(Object.keys(citiesWeatherData).length !== 0) && 
+          <WeatherTable>
+            {WeatherTableRowElements}
+          </WeatherTable>
+        }
+      </Layout>
     </div>
   )
 }
 
-export default App;
+export default App
