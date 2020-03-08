@@ -1,5 +1,5 @@
 # WeatherApp
-![weatherApp Image](https://raw.githubusercontent.com/darshitkuwadia/WeatherApi/master/appSS.png)
+![weatherApp Image](https://github.com/Darshitkuwadia/weatherApi/blob/master/appSS.png)
 
 ## Install guide
 
