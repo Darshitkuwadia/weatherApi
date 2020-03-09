@@ -28,6 +28,7 @@
 ### Enhancement 
 - Lint : eslint
 - Accessibility
+- Resopnsive Website
 
 ### Project Structure
   - client

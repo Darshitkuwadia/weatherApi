@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Layout renders the children 1`] = `
+<div
+  className="layout"
+>
+  <div
+    className="header"
+  >
+    <h1>
+      Layout Title
+    </h1>
+    <h3>
+      Layout Sub Title
+    </h3>
+  </div>
+  <div
+    className="content"
+  >
+    <p>
+      Children
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Layout should render the Title amd SubTitle Component correctly 1`] = `
+<div
+  className="layout"
+>
+  <div
+    className="header"
+  >
+    <h1>
+      Layout Title
+    </h1>
+    <h3>
+      Layout Sub Title
+    </h3>
+  </div>
+  <div
+    className="content"
+  />
+</div>
+`;

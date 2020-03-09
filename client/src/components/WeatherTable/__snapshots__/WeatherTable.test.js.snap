@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WeatherTable <WeatherTable.Row /> renders 1`] = `
+<tr>
+  <td>
+    WeatherTableRow city
+  </td>
+  <td>
+    WeatherTableRow temperature
+    ℉
+  </td>
+  <td>
+    WeatherTableRow summary
+  </td>
+  <td>
+    Invalid Date
+  </td>
+  <td
+    className="weather-icon"
+  >
+    <ReactSkycons
+      autoplay={true}
+      color="black"
+      icon="CLEAR_NIGHT"
+    />
+  </td>
+</tr>
+`;
+
+exports[`WeatherTable renders with WeatherTable.Row children 1`] = `
+<table
+  className="weather-table"
+>
+  <tbody>
+    <tr>
+      <th>
+        City
+      </th>
+      <th>
+        Temperature
+      </th>
+      <th>
+        Summary
+      </th>
+      <th>
+        Date
+      </th>
+      <th>
+        Weather Icon
+      </th>
+    </tr>
+    <WeatherTable.Row
+      city="WeatherTableRow city"
+      summary="WeatherTableRow summary"
+      temperature="WeatherTableRow temperature"
+      time="WeatherTableRow time"
+      weatherIcon="clear-night"
+    />
+  </tbody>
+</table>
+`;
+
+exports[`WeatherTable should render the WeatherTable 1`] = `
+<table
+  className="weather-table"
+>
+  <tbody>
+    <tr>
+      <th>
+        City
+      </th>
+      <th>
+        Temperature
+      </th>
+      <th>
+        Summary
+      </th>
+      <th>
+        Date
+      </th>
+      <th>
+        Weather Icon
+      </th>
+    </tr>
+  </tbody>
+</table>
+`;

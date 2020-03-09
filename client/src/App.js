@@ -62,6 +62,7 @@ function App() {
         subTitle="An application to find weather report of city"
       >
         <form 
+          id="weatherForm"
           className="form" 
           onSubmit={handleOnSubmit}
         >

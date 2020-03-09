@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App should render the App Component correctly 1`] = `
+<div
+  className="App"
+>
+  <Layout
+    subTitle="An application to find weather report of city"
+    title="[ iWeather ]"
+  >
+    <form
+      className="form"
+      id="weatherForm"
+      onSubmit={[Function]}
+    >
+      <label
+        className="label"
+      >
+        Type City Name Here:
+      </label>
+      <input
+        className="input-text"
+        id="cityName"
+        name="cityName"
+        onBlur={[Function]}
+        placeholder="Browse for your location"
+        type="text"
+      />
+      <input
+        className="input-button"
+        type="submit"
+        value="Search"
+      />
+    </form>
+  </Layout>
+</div>
+`;
